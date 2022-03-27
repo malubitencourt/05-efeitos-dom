@@ -1,6 +1,7 @@
+//atualizado para dataset para deixar a documentação mais compreesível
 function initTabNav() { //função para isolar os codigos e evitar possiveis conflitos no Js
-    const tabMenu = document.querySelectorAll('.js-tabmenu li');
-    const tabContent = document.querySelectorAll('.js-tabcontent section');
+    const tabMenu = document.querySelectorAll('[data-tab="menu"] li');
+    const tabContent = document.querySelectorAll('[data-tab="content"] section');
     const activeClass = 'ativo';
 
     if(tabMenu.length && tabContent.length) { //verifica se existe itens nessa nas constantes selecionadas para depois passar os codigo dentro da verificação.
@@ -12,7 +13,8 @@ function initTabNav() { //função para isolar os codigos e evitar possiveis con
             tabContent.forEach((content) => { 
                 content.classList.remove(activeClass); //loop que remove a classe das os outros elementos.
             });
-            tabContent[index].classList.add(activeClass); //adiciona a classe.
+            const direcao = tabContent[index].dataset.anime
+            tabContent[index].classList.add(activeClass, direcao); //adiciona a classe.
         };
 
         //loop que adiciona um evento de 'click' em todos os itens que quando ocorrer  retornara a função anterior usando o index do item clicado. 
@@ -27,7 +29,7 @@ initTabNav();
 
 
 function initAccordion(){
-    const accordionList = document.querySelectorAll('.js-accordion dt');
+    const accordionList = document.querySelectorAll('[data-anime="accordion"] dt');
     const activeClass = 'ativo';
     accordionList[0].classList.add(activeClass);
     accordionList[0].nextElementSibling.classList.add(activeClass);
@@ -46,7 +48,7 @@ initAccordion();
 
 
 function initScrollSuave(){
-    const linksInternos = document.querySelectorAll('.js-menu a[href^="#"]');
+    const linksInternos = document.querySelectorAll('[data-menu="suave"] a[href^="#"]');
 
     function scrollToSection(event) {
     event.preventDefault();
@@ -72,7 +74,7 @@ function initScrollSuave(){
 initScrollSuave();
 
 function initAnimaScroll(){ 
-    const sections = document.querySelectorAll('.js-scroll');
+    const sections = document.querySelectorAll('[data-anime="scroll"]');
     if(sections.length) {
     const windowMetade = window.innerHeight * 0.6;
     function animaScroll(){
